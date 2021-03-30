@@ -17,5 +17,18 @@ def calc_yen():
     menseki = float(hankei * hankei * 3.14)
     return render_template("math2.html",ensyu=ensyu,menseki=menseki)
 
+@app.route("/kyuyo")
+def kyuyo():
+    return render_template("salary.html")
+
+@app.route("/result")
+def result():
+    time_money = int(request.args.get("time_money"))
+    worktime = int(request.args.get("worktime"))
+
+    salary = time_money * worktime * 31
+	
+    return render_template("salary_result.html",salary=salary)
+
 if __name__ == "__main__":
     app.run(debug=True)
